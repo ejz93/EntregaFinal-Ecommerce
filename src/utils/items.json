@@ -1,0 +1,82 @@
+[
+    {
+      "id": "1",
+      "category": "CPU",
+      "categoryId": "1",
+      "brand": "AMD",
+      "img": "../assets/ryzen5.png",
+      "model": "Ryzen 5 5600",
+      "price": "100",
+      "stock": "25"
+    },
+    {
+      "id": "2",
+      "category": "CPU",
+      "categoryId": "1",
+      "brand": "Intel",
+      "img": "../assets/inteli5.png",
+      "model": "Intel i5",
+      "price": "120",
+      "stock": "22"
+    },
+    {
+      "id": "3",
+      "category": "GPU",
+      "categoryId": "2",
+      "brand": "NVIDIA",
+      "img": "../assets/rtx3060.png",
+      "model": "RTX 3060",
+      "price": "300",
+      "stock": "11"
+    },
+    {
+      "id": "4",
+      "category": "GPU",
+      "categoryId": "2",
+      "brand": "ASUS",
+      "img": "../assets/rx6600.jpg",
+      "model": "ASUS Radeon RX 6600",
+      "price": "250",
+      "stock": "14"
+    },
+    {
+      "id": "5",
+      "category": "MOBO",
+      "categoryId": "3",
+      "brand": "ASUS",
+      "img": "../assets/mobo.png",
+      "model": "ASUS B-550",
+      "price": "250",
+      "stock": "24"
+    },
+    {
+      "id": "6",
+      "category": "PSU",
+      "categoryId": "4",
+      "brand": "seasonic",
+      "img": "../assets/psu.png",
+      "model": "Platinum 1200",
+      "price": "250",
+      "stock": "21"
+    },
+    {
+      "id": "7",
+      "category": "RAM",
+      "categoryId": "5",
+      "brand": "G-Skill",
+      "img": "../assets/ram.png",
+      "model": "Trident Z Royal",
+      "price": "200",
+      "stock": "12"
+    },
+    {
+      "id": "8",
+      "category": "Storage",
+      "categoryId": "6",
+      "brand": "Samsung",
+      "img": "../assets/ssd.png",
+      "model": "Evo Plus 970 1TB",
+      "price": "200",
+      "stock": "11"
+    }
+  ]
