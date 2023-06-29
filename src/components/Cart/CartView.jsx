@@ -1,50 +1,52 @@
-import React, { Fragment, useContext } from "react";
+import React, { useContext } from "react";
 import CheckoutForm from "../Form/CheckoutForm";
 import { ProductContext } from "../../context/ProductProvider";
 import { CartContext } from "../../context/CartProvider";
+import "./CartView.css";
 
 const CartView = () => {
   const { cart, getTotal, removeItem, clearCart } = useContext(CartContext);
   const { handleSubmit } = useContext(ProductContext);
 
   return (
-    <Fragment>
-      <div className="container-fluid col col-sm-12 border border-dark">
-      <h1 className="text-center m-3">Checkout</h1>
-      <div className="container-fluid col col-sm-12">
-        
-          {cart.map((products) => (
-            <Fragment key={products.model}>
-              <h4 className="m-3">{products.model}</h4>
-              <h6 className="m-3">Quantity: {products.count}</h6>
-              <button
-                onClick={() => removeItem(products.id)}
-                className="btn btn-danger mx-2"
-              >
-                <i className="bi bi-trash"></i>
-              </button>
-              
-            </Fragment>
+    <>
+      <div className="cart_container container col-sm-12">
+        <h1 className="text-center text-light m-3">Checkout</h1>
+        <div className="container col-sm-12">
+          {cart.map((item) => (
+            <React.Fragment key={item.id}>
+              <h4 className="text-light">{item.model}</h4>
+              <h6 className="m-4 text-light">
+                Quantity: {item.count}{" "}
+                <button
+                  onClick={() => removeItem(item.id)}
+                  className="btn btn-warning m-4"
+                >
+                  <i className="bi bi-trash"></i>
+                </button>
+              </h6>
+            </React.Fragment>
           ))}
-          <hr />
-          <h2>Total: ${getTotal()}</h2>
-          <button
-                onClick={() => clearCart()}
-                className="btn btn-danger m-5"
-              >
-                <i className="bi bi-trash"></i> Clear Cart
-              </button>
-       
+          <h2 className="mt-4 text-light">
+            Total: ${getTotal()}
+            <button
+              onClick={() => clearCart()}
+              className="btn btn-warning mx-5"
+            >
+              <i className="bi bi-trash"></i> Clear Cart
+            </button>
+          </h2>
+
+          <div className="form_container">
+            <CheckoutForm
+              total={cart.length}
+              items={cart}
+              handleSubmit={handleSubmit}
+            />
+          </div>
+        </div>
       </div>
-        <div className="container-fluid m-3">
-          <CheckoutForm
-            total={cart.length}
-            items={cart}
-            handleSubmit={handleSubmit}
-          />
-        </div>
-        </div>
-    </Fragment>
+    </>
   );
 };
 

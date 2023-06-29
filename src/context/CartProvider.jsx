@@ -1,4 +1,5 @@
 import React, {createContext, useEffect, useState} from 'react'
+import { getCartFromSessionStorage, saveCartInSessionStorage } from '../helpers/index';
 
 export const CartContext = createContext('')
 
@@ -6,43 +7,9 @@ const CartProvider = ({children}) => {
 
     const [cart, setCart] = useState([]);
 
-    // const addCart = (item) => {
-    //     if (checkIfItemExistInCart(item.id)) {
-    //         const updatedCart = cart.map((cartItem) => {
-    //             if (cartItem.id === item.id) {
-    //                 return {
-    //                     ...cartItem,
-    //                     count: cartItem.count + 1
-    //                 };
-    //             }
-    //             return cartItem;
-    //         });
-    //         setCart(updatedCart);
-    //     } else {
-    //         setCart([...cart, item]);
-    //     }
-    // };
-
-    
     useEffect(() => {
-        const storedCart = sessionStorage.getItem('cart');
-        if (storedCart) {
-            try {
-                const parsedCart = JSON.parse(storedCart);
-                if (Array.isArray(parsedCart)) {
-                    setCart(parsedCart);
-                } else {
-                    console.log('Invalid cart data sessionStorage.');
-                }
-            } catch (error) {
-                console.log('Error parsing cart data from sessionStorage:', error);
-            }
-        }
+        getCartFromSessionStorage('cart') && setCart(getCartFromSessionStorage('cart'));
     }, []);
-
-    const saveCartInSessionStorage = (cart) => {
-        sessionStorage.setItem('cart', JSON.stringify(cart));
-    }
 
     const addCart = (item) => {
         let localCart = [];
@@ -52,11 +19,11 @@ const CartProvider = ({children}) => {
             localCart = [...cart, item]
         }
         setCart(localCart);
-        saveCartInSessionStorage(localCart);
+        saveCartInSessionStorage('cart', localCart);
     };
 
-    const updatedCart = (id) => cart.map((cartItem) => {
-        if (cartItem.id === id) {
+    const updatedCart = (item) => cart.map((cartItem) => {
+        if (cartItem.id === item.id) {
             return {
                 ...cartItem,
                 count: cartItem.count + 1
@@ -85,7 +52,7 @@ const CartProvider = ({children}) => {
     }
 
     return (
-        <CartContext.Provider value={{cart, addCart, getTotal, removeItem, clearCart}}>
+        <CartContext.Provider value={{cart, setCart, addCart, getTotal, removeItem, clearCart}}>
             {children}
         </CartContext.Provider>
     )

@@ -1,35 +1,32 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "../pages/Home";
-import ItemDetailContainer from "../components/ItemDetailContainer/ItemDetailContainer";
-import NavBar from "../components/Navbar/NavBar";
-import Footer from "../components/Footer/Footer";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "../pages/Home/Home";
 import Error from "../pages/Error";
-import ItemListContainer from "../components/ItemListContainer/ItemListContainer";
+import CartView from "../components/Cart/CartView";
+import ItemDetailView from "../pages/ItemDetailView";
+import NavBar from "../components/Navbar/NavBar";
+import LoaderProvider from "../context/LoaderProvider";
 import ProductProvider from "../context/ProductProvider";
 import CartProvider from "../context/CartProvider";
-import CartView from "../components/Cart/CartView";
 
 const Rutas = () => {
   return (
-    <BrowserRouter>
-      <ProductProvider>
-        <CartProvider>
-          <NavBar
-            className={"navbar navbar-expand-lg navbar-light bg-warning"}
-            navbarLogo={"Elemental"}
-          />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/category/:category" element={<ItemListContainer />} />
-            <Route path="/item/:id" element={<ItemDetailContainer />} />
-            <Route path="/cart" element={<CartView />} />
-            <Route path="*" element={<Error />} />
-          </Routes>
-        </CartProvider>
-      </ProductProvider>
-      <Footer />
-    </BrowserRouter>
+    <Router>
+      <LoaderProvider>
+        <ProductProvider>
+          <CartProvider>
+            <NavBar />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/cart" element={<CartView />} />
+              <Route path="/category/:categoryId" element={<Home />} />
+              <Route path="/item/:id" element={<ItemDetailView />} />
+              <Route path="*" element={<Error />} />
+            </Routes>
+          </CartProvider>
+        </ProductProvider>
+      </LoaderProvider>
+    </Router>
   );
 };
 

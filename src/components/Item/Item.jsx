@@ -1,29 +1,47 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import "./Item.css";
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+// import Button from '@mui/material/Button';
+import Button from 'react-bootstrap/Button';
+import Typography from '@mui/material/Typography';
+import {Divider} from "@mui/material";
 
-const Item = (props) => {
-  
+const Item = ({id, brand, model, img, price}) => {
+
   const navigate = useNavigate();
-  const { id, brand, model, img, price, stock } = props;
 
   return (
-    <div className="container border border-dark m-5 p-1">
-      <h5 className=" fs-2">{brand}</h5>
-      <h5 className=" fs-2">{model}</h5>
-      <img
-          src={img}
-          className="d-flex mx-5 p-2"
-          style={{ height: "250px" }}
-        />
-      <p className="text-center p-1 m-2 fs-5">${price}</p>
-      <p className="text-center p-1 m-2 fs-5">{stock}</p>
-      <button
-        className="btn btn-warning border border-dark"
-        onClick={() => navigate(`/item/${id}`)}
-      >
-        BUY NOW
-      </button>
-    </div>
+    <Card className="text-light" sx={{boxShadow: 3, borderRadius: 1, border: 1, borderColor: 'text.primary', backgroundColor: 'text.primary', maxWidth: 350}}>
+            <CardMedia
+                component="img"
+                alt={model}
+                height="250"
+                width="100%"
+                image={img}
+            />
+            <CardContent>
+                <Typography className="text-light" gutterBottom variant="h5" component="div">
+                    {brand}
+                </Typography>
+                <Typography className="text-light" variant="body2" color="text.secondary">
+                    {model}
+                </Typography>
+                <Typography className="imgMediaCard__price text-light" variant="h4" color="text.secondary">
+                    ${price}
+                </Typography>
+            </CardContent>
+            <Divider/>
+            <Button
+                 className="border border-dark p-2 w-100"
+                 onClick={() => navigate(`/item/${id}`)}
+                 variant="warning"
+               >
+                 Buy Now
+               </Button>
+        </Card>
   );
 };
 

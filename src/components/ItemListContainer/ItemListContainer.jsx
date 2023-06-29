@@ -1,89 +1,42 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
-import { Fragment } from "react";
-import "./stylesItemListContainer.css";
+import React from "react";
+import { Box, Container } from "@mui/material";
+import Grid from '@mui/material/Unstable_Grid2';
+import "./ItemListContainer.css";
 import Item from "../Item/Item";
-import { useNavigate, useParams } from "react-router-dom";
-import { CartContext } from "../../context/CartProvider";
-import { ProductContext } from "../../context/ProductProvider";
-import Loader from "../Loader/Loader";
+import { useNavigate } from "react-router-dom";
 
-const ItemListContainer = () => {
-  
-  const { products, getProducts } = useContext(ProductContext);
-  const { addCart } = useContext(CartContext);
+const ItemListContainer = ({ products, categoryId }) => {
 
   const navigate = useNavigate();
-  const [loader, setLoader] = useState(true);
-  const { categoryId } = useParams();
-  const [filteredItem, setFilteredItem] = useState([]);
-
-  const filterProducts = useCallback(() => {
-    if (categoryId) {
-      const filteredItems = products.filter(
-        (item) => item.category === categoryId
-      );
-      setFilteredItem(filteredItems);
-    } else {
-      setFilteredItem(products);
-    }
-  }, [products, categoryId]);
-
-  // useEffect(() => {
-  //   getProducts();
-  //   filterProducts();
-  //   setTimeout(() => {
-  //     setLoader(false);
-  //   }, 1000);
-  // }, [getProducts, filterProducts]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      await getProducts();
-      filterProducts();
-      setTimeout(() => {
-        setLoader(false);
-      }, 500);
-    };
-  
-    fetchData();
-  }, [getProducts, filterProducts]);
-  
 
   return (
-    <Fragment>
-      {loader ? (
-        <Loader showLoader={true} />
-      ) : (
-        <Fragment>
-          <div>
-            {categoryId && (
-              <div>
-                <button className="" onClick={() => navigate(`/`)}>
-                  Todos los productos
-                </button>
-              </div>
-            )}
-            <div className="container" style={{alignItems:'center' ,justifyContent:'center',textAlign:'center'}}>
-              {products.map(
-                ({ id, category, brand, model, img, price }) => (
-                  <div key={id}>
-                    <Item
-                      id={id}
-                      category={category}
-                      brand={brand}
-                      img={img}
-                      model={model}
-                      price={price}
-                      addCart={addCart}
-                    />
-                  </div>
-                )
-              )}
-            </div>
-          </div>
-        </Fragment>
-      )}
-    </Fragment>
+    <Container maxWidth='xl' sx={{mt: 4}}>
+    <Box sx={{ flexGrow: 1 }}>
+      {categoryId && 
+        <Grid className="itemListContainer__category">
+          <button className="btn btn-warning border border-dark mx-5 mb-5" onClick={() => navigate(`/`)}>
+            Home
+          </button>
+        </Grid>
+      }
+      
+        <Grid container spacing={3}>
+          {products.map(({ id, category, brand, model, img, price, stock }) => (
+            <Grid xs={4} key={id}>
+              <Item
+                id={id}
+                category={category}
+                brand={brand}
+                img={img}
+                model={model}
+                price={price}
+                stock={stock}
+              />
+            </Grid>
+          ))}
+        </Grid>
+    </Box>
+    </Container>
   );
 };
 

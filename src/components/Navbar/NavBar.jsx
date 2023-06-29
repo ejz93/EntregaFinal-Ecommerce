@@ -2,13 +2,12 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import CartView from "../Cart/CartWidgetView";
 
-const NavBar = (props) => {
-  // const { navbar_items } = props;
+const NavBar = () => {
+  
 
   return (
     <nav className="navbar navbar-light navbar-expand-lg bg-warning">
-      <div className="container-fluid navbar navbar-light navbar-brand">
-        <p>
+      <div className="container-fluid d-flex">
           <NavLink to="/" className={"nav-link text-dark"}>
             <img
               className="d-inline-block align-text-center px-1"
@@ -18,7 +17,6 @@ const NavBar = (props) => {
             />
             lemental
           </NavLink>
-        </p>
         <button
           className="navbar-toggler"
           type="button"
@@ -30,32 +28,27 @@ const NavBar = (props) => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
+        <div className="collapse navbar-collapse" id="navbarNav">          
           <ul className="navbar-nav">
             <li className="nav-item">
               <NavLink to="/" className={"nav-link"}>
                 Home
               </NavLink>
             </li>
-            {/* <li className="nav-item">
-              <NavLink to="/checkout" className={"nav-link"}>
-                Checkout
-              </NavLink>
-            </li> */}
             <li className="nav-item dropdown">
-              <p
-                className="nav-link dropdown-toggle"
-                href="#"
-                id="navbarScrollingDropdown"
+              <a
+                className="nav-link dropdown-toggle px-2 py-1 m-1 text-dark bg-warning text-center"
+                href="/"
+                id="navbarDropdown"
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
                 Categories
-              </p>
+              </a>
               <ul
                 className="dropdown-menu"
-                aria-labelledby="navbarScrollingDropdown"
+                aria-labelledby="navbarDropdown"
               >
                 <li>
                   <NavLink active="true" to="/category/cpu" className="dropdown-item">
@@ -65,6 +58,26 @@ const NavBar = (props) => {
                 <li>
                   <NavLink active="true" to="/category/gpu" className="dropdown-item">
                     GPU
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink active="true" to="/category/mobo" className="dropdown-item">
+                    MOBO
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink active="true" to="/category/ram" className="dropdown-item">
+                    RAM
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink active="true" to="/category/psu" className="dropdown-item">
+                    PSU
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink active="true" to="/category/ssd" className="dropdown-item">
+                    SSD
                   </NavLink>
                 </li>
               </ul>

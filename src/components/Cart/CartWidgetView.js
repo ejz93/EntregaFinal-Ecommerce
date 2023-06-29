@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import {Badge, IconButton} from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useNavigate } from 'react-router-dom';
-import CartProvider, { CartContext } from '../../context/CartProvider';
+import { CartContext } from '../../context/CartProvider';
 
 const CartWidgetView = ({color}) => {
 
