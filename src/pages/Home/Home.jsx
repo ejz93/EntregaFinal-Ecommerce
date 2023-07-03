@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { ProductContext } from "../../context/ProductProvider";
 import { useParams } from "react-router-dom";
 import ItemListContainer from "../../components/ItemListContainer/ItemListContainer";
-import { Box } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import Loader from "../../components/Loader/Loader";
 import { LoaderContext } from "../../context/LoaderProvider";
 import Footer from "../../components/Footer/Footer";
@@ -31,8 +31,9 @@ const Home = () => {
             {categoryId}
           </h1>
         </Box>
+        <Grid container spacing={2}>
         <ItemListContainer products={products} categoryId={categoryId} />
-        <Footer />
+        </Grid>
       </>
     );
   } else {

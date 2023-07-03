@@ -20,7 +20,7 @@ const ItemListContainer = ({ products, categoryId }) => {
         </Grid>
       }
       
-        <Grid container spacing={3}>
+        <Grid className="m-5" container spacing={3}>
           {products.map(({ id, category, brand, model, img, price, stock }) => (
             <Grid xs={12} sm={6} md={4} key={id}>
               <Item

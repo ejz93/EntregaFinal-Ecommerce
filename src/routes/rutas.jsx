@@ -8,6 +8,7 @@ import NavBar from "../components/Navbar/NavBar";
 import LoaderProvider from "../context/LoaderProvider";
 import ProductProvider from "../context/ProductProvider";
 import CartProvider from "../context/CartProvider";
+import Footer from "../components/Footer/Footer";
 
 const Rutas = () => {
   return (
@@ -19,10 +20,11 @@ const Rutas = () => {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/cart" element={<CartView />} />
-              <Route path="/category/:categoryId" element={<Home />} />
+              <Route path="/category/:categoryId" element={<Home/>} />
               <Route path="/item/:id" element={<ItemDetailView />} />
               <Route path="*" element={<Error />} />
             </Routes>
+            <Footer />
           </CartProvider>
         </ProductProvider>
       </LoaderProvider>

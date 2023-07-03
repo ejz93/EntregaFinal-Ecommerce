@@ -16,7 +16,7 @@ const CartView = () => {
           {cart.map(item => 
             <Fragment key={item.id}>
               <h4 className="text-light">{item.model}</h4>
-              <img src={item.img} alt={item.model} width="50" height="50" />
+              <img className="text-light" src={item.img} alt={item.model} width="50" height="50" />
               <h6 className="text-light">
                 Quantity: {item.count}{" "}
                 <button
