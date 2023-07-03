@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import CartView from "../Cart/CartWidgetView";
+import "./NavBar.css";
 
 const NavBar = () => {
   
@@ -37,7 +38,7 @@ const NavBar = () => {
             </li>
             <li className="nav-item dropdown">
               <a
-                className="nav-link dropdown-toggle px-2 py-1 m-1 text-dark bg-warning text-center"
+                className="nav-link dropdown-toggle px-2 py-1 m-1 text-dark text-center"
                 href="/"
                 id="navbarDropdown"
                 role="button"

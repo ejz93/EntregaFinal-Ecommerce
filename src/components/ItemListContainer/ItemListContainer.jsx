@@ -22,7 +22,7 @@ const ItemListContainer = ({ products, categoryId }) => {
       
         <Grid container spacing={3}>
           {products.map(({ id, category, brand, model, img, price, stock }) => (
-            <Grid xs={4} key={id}>
+            <Grid xs={12} sm={6} md={4} key={id}>
               <Item
                 id={id}
                 category={category}

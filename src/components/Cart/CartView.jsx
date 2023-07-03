@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { Fragment, useContext } from "react";
 import CheckoutForm from "../Form/CheckoutForm";
 import { ProductContext } from "../../context/ProductProvider";
 import { CartContext } from "../../context/CartProvider";
@@ -10,13 +10,14 @@ const CartView = () => {
 
   return (
     <>
-      <div className="cart_container container col-sm-12">
+      <div className="cart_container col-sm-12">
         <h1 className="text-center text-light m-3">Checkout</h1>
         <div className="container col-sm-12">
-          {cart.map((item) => (
-            <React.Fragment key={item.id}>
+          {cart.map(item => 
+            <Fragment key={item.id}>
               <h4 className="text-light">{item.model}</h4>
-              <h6 className="m-4 text-light">
+              <img src={item.img} alt={item.model} width="50" height="50" />
+              <h6 className="text-light">
                 Quantity: {item.count}{" "}
                 <button
                   onClick={() => removeItem(item.id)}
@@ -25,8 +26,8 @@ const CartView = () => {
                   <i className="bi bi-trash"></i>
                 </button>
               </h6>
-            </React.Fragment>
-          ))}
+            </Fragment>
+          )}
           <h2 className="mt-4 text-light">
             Total: ${getTotal()}
             <button
